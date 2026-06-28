@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import csv
 import hashlib
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -303,7 +303,7 @@ def _read_bronze_csv(source: str, path: Path, run_date: str) -> list[dict[str, A
     with path.open(newline="", encoding="utf-8") as handle:
         rows = list(csv.DictReader(handle))
     for row in rows:
-        row["_ingest_ts"] = datetime.utcnow().isoformat()
+        row["_ingest_ts"] = datetime.now(UTC).isoformat()
         row["_source_file"] = str(path)
         row["_batch_id"] = run_date
         row["_source_snapshot_date"] = run_date

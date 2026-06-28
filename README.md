@@ -114,6 +114,14 @@ PYTHONPATH=src python scripts/run_local_e2e.py --run-date 2026-07-01
 
 This writes CSVs locally, reads them back as Bronze-like rows with ingestion metadata, builds Silver/Gold in Python, and validates the MVP output contract. Auto Loader itself remains a Databricks runtime test.
 
+Run the Spark-backed local E2E smoke test with the shared venv:
+
+```bash
+PYTHONPATH=src /workspaces/dataplatform/.venv/bin/python scripts/run_spark_e2e.py --run-date 2026-07-01
+```
+
+This uses real PySpark DataFrames and SQL for the Silver and Gold stages. It uses standard CSV reads locally because Auto Loader `cloudFiles` is only available in Databricks Runtime.
+
 ## Phase 2
 
 - Add SCD Type 2 dimensions for theatre and screen.
