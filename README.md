@@ -106,6 +106,14 @@ checked locally:
 python -m pytest
 ```
 
+Run the dependency-free local E2E smoke test:
+
+```bash
+PYTHONPATH=src python scripts/run_local_e2e.py --run-date 2026-07-01
+```
+
+This writes CSVs locally, reads them back as Bronze-like rows with ingestion metadata, builds Silver/Gold in Python, and validates the MVP output contract. Auto Loader itself remains a Databricks runtime test.
+
 ## Phase 2
 
 - Add SCD Type 2 dimensions for theatre and screen.
